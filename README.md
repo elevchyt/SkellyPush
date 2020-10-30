@@ -3,4 +3,4 @@ Push the red box inside the goal circle while avoiding to get stuck.
 
 ![Alt Text](https://i.imgur.com/jPcwa7M.gif)
 
-*Art, music & coding done by elevchyt*
+*Art, music/sfx & coding done by elevchyt*
