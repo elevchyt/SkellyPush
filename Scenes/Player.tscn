@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/player-spr.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
+[ext_resource path="res://FontMain.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/WinLabel.gd" type="Script" id=4]
+[ext_resource path="res://Audio/restart.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/move.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="Player" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 8 )
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 8, 8 )
+enabled = true
+cast_to = Vector2( 0, 0 )
+collide_with_areas = true
+
+[node name="WinLabel" type="Label" parent="."]
+visible = false
+margin_left = -11.6814
+margin_top = -13.838
+margin_right = 28.3186
+margin_bottom = 0.161957
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.792157, 0.627451, 0.352941, 1 )
+text = "WIN"
+align = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="WinLabel"]
+wait_time = 0.4
+autostart = true
+
+[node name="AudioMove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="AudioRestart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="timeout" from="WinLabel/Timer" to="WinLabel" method="_on_Timer_timeout"]
